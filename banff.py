@@ -26,6 +26,12 @@ headers = {
 }
 
 try:
+   client_id = os.environ["CBC_CLIENT_ID"]
+except KeyError:
+    client_id = "Token not available!"
+    # or raise an error if it's not available so that the workflow fails
+
+try:
     response = requests.post(url, data=data, headers=headers)
     if response.status_code == 200:
         access_token = response.json().get("access_token")
