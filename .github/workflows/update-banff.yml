@@ -30,3 +30,14 @@ jobs:
           CBC_CLIENT_ID: ${{ secrets.CBC_CLIENT_ID }}
           CBC_CLIENT_SECRET: ${{ secrets.CBC_CLIENT_SECRET }}
         run: python banff.py
+      
+      - name: Commit changes
+        run: |
+          git config --global user.email "no-reply@github.com"
+          git config --global user.name "GitHub Actions"
+          git add static/blog.json
+          git commit -m "Update banff.json"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
