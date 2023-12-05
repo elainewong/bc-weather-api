@@ -18,7 +18,8 @@ jobs:
         python-version: 3.8  # Choose your Python version
 
     - name: Run Python script
-      run: |
-        banff.py  # Replace with the actual filename of your Python script
+      run: python banff.py  # Replace with the actual filename of your Python script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CBC_CLIENT_ID: ${{ secrets.CBC_CLIENT_ID }}
+        CBC_CLIENT_SECRET: ${{ secrets.CBC_CLIENT_SECRET }}
